@@ -1,3 +1,6 @@
+Visit the site here: https://aougpa.github.io/
+
+
 AOU GPA Calculator
 Overview
 
