@@ -10,7 +10,7 @@ Overview
 The AOU GPA Calculator is a web-based tool designed to assist students at the Arab Open University (AOU) in calculating their Grade Point Average (GPA) based on the university's grading system. This calculator provides a user-friendly interface for students to input their grades and study hours, offering a quick and accurate assessment of their academic performance.
 
 
-Features
+**Features**
 1. Dynamic Subject Input
 
     Easily add subjects with individual grade and study hour inputs.
@@ -42,17 +42,17 @@ How to Use
 
 
 
-Contributing
+**Contributing**
 
 Contributions are welcome! If you have ideas for improvements, bug fixes, or additional features, feel free to open an issue or submit a pull request.
 
 
-Author
+**Author**
 
 This GPA Calculator was created by Mohammed Nuseirat. Connect with me on LinkedIn and Twitter.
 
 
-License
+**License**
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
