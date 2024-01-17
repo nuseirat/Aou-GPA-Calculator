@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Grading System</title>
+</head>
+<body>
+  <!-- Top Image -->
+  <img src="https://www.arabou.edu.sa/assets/common/images/logo.png?v=2" alt="Top Image" style="width: 15%; height: auto;">
+
+  <!-- Main Content Container -->
+  <div class="container">
+    <h1>AOU GPA Calculator</h1>
+    <p>نظام الجامعة العربية المفتوحة كالتالي</p>
+    <p>A=4, B+=3.5, B=3, C+=2.5, C=2, D=1.5, F=0</p>
+    <div id="inputs">
+      <!-- Inputs will be dynamically added here -->
+    </div>
+    <!-- Buttons for operations -->
+    <!-- Add custom classes to each button -->
+    <button class="add-subject-button" onclick="createSubjectInput()">Add Subject</button>
+    <button class="calculate-gpa-button" onclick="calculateGPA()">Calculate GPA</button>
+    <button class="remove-all-button" onclick="removeAllSubjects()">Remove All</button>
+
+    
+
+    <!-- Display area for results -->
+    <div id="result"></div>
+  </div>
+
+  <!-- Footer Section -->
+<footer>
+    <!-- Author Information -->
+    <span class="author">By Mohammed Nuseirat</span>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+        <a href="https://github.com/nuseirat" target="_blank">
+            <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png" alt="GitHub Icon">
+        </a>
+        <a href="https://www.linkedin.com/in/mohammednuseirat/" target="_blank">
+            <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/1384/1384014.png" alt="LinkedIn Icon">
+        </a>
+        <a href="https://nuseirat.github.io/" target="_blank">
+            <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/3178/3178162.png" alt="Website Icon">
+        </a>
+    </div>
+</footer>
+
+
+  <!-- JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
