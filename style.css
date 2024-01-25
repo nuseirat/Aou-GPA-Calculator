@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: #B4D4FF;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -9,8 +9,21 @@ body {
     min-height: 100vh;
 }
 
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    margin: 10px 0; 
+}
+
+
+
+
+
 .container {
-    background-color: #fff;
+    background-color: #e0e6f0;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -21,16 +34,19 @@ body {
 }
 
 h1, p {
-    font-family: 'Cairo', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
 
 /* Button Styles */
 button {
     padding: 8px 15px;
     margin: 5px;
     cursor: pointer;
-    background-color: #6ec071;
-    color: white;
+    background-color: #176B87;
+    color: #ffff;
     border: none;
     border-radius: 5px;
     font-size: 14px;
@@ -38,14 +54,17 @@ button {
     width: calc(48% - 10px);
 }
 
+
+
+
 /* Add styles for each button class */
 .add-subject-button {
-    background-color: #6ec071;
+    background-color: #176B87;
 
 }
 
 .calculate-gpa-button {
-    background-color: #6ec071;
+    background-color: #176B87;
 }
 
 .cumulative-gpa-button {
@@ -57,13 +76,16 @@ button {
     width: calc(98.8% - 20px);
 }
 
+
+
+
 /* Hover styles for each button class */
 .add-subject-button:hover {
-    background-color: #274d29;
+    background-color: #0f4152;
 }
 
 .calculate-gpa-button:hover {
-    background-color: #274d29;
+    background-color: #0f4152;
 }
 
 .cumulative-gpa-button:hover {
@@ -91,6 +113,7 @@ input {
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #inputs {
@@ -120,10 +143,17 @@ input {
     background-color: #5a2c2c;
 }
 
-/* Result Display Styles */
+
+
+
 #result {
     margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 100%; 
 }
+
+
+
 
 /* Responsive Styles */
 @media only screen and (max-width: 600px) {
@@ -132,23 +162,34 @@ input {
     }
 }
 
+
+
+
 /* Footer Styles */
 footer {
     margin-top: 20px;
     color: #888;
     display: flex;
-    flex-direction: column; /* Updated to column layout */
+    flex-direction: column; 
     align-items: center;
     text-align: center;
 }
+
+
 
 .author {
     margin-bottom: 10px;
 }
 
+
+
+
 .social-icons {
     display: flex;
 }
+
+
+
 
 .footer-icon {
     margin: 0 10px;
@@ -156,11 +197,3 @@ footer {
     height: 30px;
 }
 
-/* Top Image Styles */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    margin: 20px 0;
-}
