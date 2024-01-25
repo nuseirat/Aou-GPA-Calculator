@@ -129,4 +129,3 @@ document.addEventListener("DOMContentLoaded", function () {
     window.calculateCumulativeGPA = calculateCumulativeGPA;
     window.removeAllSubjects = removeAllSubjects;
 });
-
