@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const inputDiv = document.getElementById("inputs");
         const cumulativeInputs = document.getElementById("cumulative-inputs");
     
-        inputDiv.innerHTML = ""; // Remove all child elements
-        cumulativeInputs.style.display = "none"; // Hide cumulative inputs
+        inputDiv.innerHTML = ""; 
+        cumulativeInputs.style.display = "none"; 
         updateSubjectsArray();
     }
     
@@ -129,3 +129,4 @@ document.addEventListener("DOMContentLoaded", function () {
     window.calculateCumulativeGPA = calculateCumulativeGPA;
     window.removeAllSubjects = removeAllSubjects;
 });
+
