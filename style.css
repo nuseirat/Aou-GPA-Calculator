@@ -233,8 +233,28 @@ input {
     text-align: center;
     font-size: 1.2rem;
     margin-top: 2rem;
-    background-color: rgba(240, 248, 255, 0);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+}
 
+.dark-mode .result {
+    background: var(--glass-bg-dark);
+    border-color: var(--border-dark);
+}
+
+/* Animation for when result appears */
+.result:not(.hidden) {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Optional: Add a subtle hover effect */
+.result:not(.hidden):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .footer {
