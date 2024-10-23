@@ -257,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function showResult(message, type = "success") {
         const resultDiv = document.getElementById("result");
         resultDiv.innerHTML = message;
-        resultDiv.className = `result glass-effect ${type}`; // Add type class for styling
         resultDiv.classList.remove("hidden");
         resultDiv.style.opacity = "0";
         
