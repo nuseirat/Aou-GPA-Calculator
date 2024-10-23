@@ -1,21 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
     const subjects = [];
 
-    function createSubjectInput() {
-        const inputDiv = document.getElementById("inputs");
+    // Create input fields for previous GPA and hours
+    createPrevGPAInputs();
+
+    window.createSubjectInput = function () {
         const subjectInput = document.createElement("div");
         subjectInput.className = "subject";
 
         const gradeInput = document.createElement("input");
         gradeInput.type = "text";
-        gradeInput.placeholder = "Enter grade";
+        gradeInput.placeholder = "Enter grade (A, B+, B, C+, C, D, F)";
 
         const hoursInput = document.createElement("input");
-        hoursInput.type = "text";
+        hoursInput.type = "number"; // Change to number for hours input
         hoursInput.placeholder = "Enter hours";
 
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
+        removeButton.className = "remove-button";
         removeButton.addEventListener("click", function () {
             subjectInput.remove();
             updateSubjectsArray();
@@ -25,107 +28,110 @@ document.addEventListener("DOMContentLoaded", function () {
         subjectInput.appendChild(hoursInput);
         subjectInput.appendChild(removeButton);
 
-        inputDiv.appendChild(subjectInput);
+        document.getElementById("inputs").appendChild(subjectInput);
         subjects.push(subjectInput);
-    }
+    };
 
-    function toggleCumulativeInputFields() {
-        const cumulativeInputs = document.getElementById("cumulative-inputs");
-        cumulativeInputs.style.display = cumulativeInputs.style.display === "none" ? "block" : "none";
-    }
+    window.calculateGPA = function () {
+        const totalGradePoints = calculateTotalGradePoints();
+        const totalHours = calculateTotalHours();
 
-    function calculateGPA() {
-        const totalGradePoints = subjects.reduce((total, subject) => {
-            const grade = convertGradeToNumeric(subject.children[0].value);
-            const hours = parseFloat(subject.children[1].value);
-            return total + grade * hours;
-        }, 0);
+        // Get previous GPA and hours
+        const prevGPA = parseFloat(document.getElementById("prev-gpa").value) || 0;
+        const prevHours = parseFloat(document.getElementById("prev-hours").value) || 0;
 
-        const totalHours = subjects.reduce((total, subject) => {
-            return total + parseFloat(subject.children[1].value);
-        }, 0);
+        // Calculate cumulative GPA
+        const cumulativeGradePoints = totalGradePoints + (prevGPA * prevHours);
+        const cumulativeTotalHours = totalHours + prevHours;
 
-        const gpa = totalGradePoints / totalHours;
+        if (totalHours === 0 && prevHours === 0) {
+            showResult("Please enter valid grades and hours", "error");
+            return;
+        }
 
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = `Total hours studied: ${totalHours}<br>GPA: ${gpa.toFixed(2)}`;
-    }
+        const currentGPA = totalHours === 0 ? 0 : totalGradePoints / totalHours;
+        const cumulativeGPA = cumulativeTotalHours === 0 ? 0 : cumulativeGradePoints / cumulativeTotalHours;
 
-    function calculateCumulativeGPA() {
-        const oldGPA = parseFloat(document.getElementById("oldGPA").value);
-        const oldGPAHours = parseFloat(document.getElementById("oldGPAHours").value);
-        const newGPA = parseFloat(document.getElementById("newGPA").value);
-        const newGPAHours = parseFloat(document.getElementById("newGPAHours").value);
+        showResult(`
+            Total hours studied: ${totalHours}<br>
+            Cumulative Total hours studied: ${cumulativeTotalHours}<br>
+            Current GPA: ${currentGPA.toFixed(2)}<br>
+            Cumulative GPA: ${cumulativeGPA.toFixed(2)}
+        `);
+    };
 
-        const totalGradePoints = subjects.reduce((total, subject) => {
-            const grade = convertGradeToNumeric(subject.children[0].value);
-            const hours = parseFloat(subject.children[1].value);
-            return total + grade * hours;
-        }, 0);
-
-        const totalHours = subjects.reduce((total, subject) => {
-            return total + parseFloat(subject.children[1].value);
-        }, 0);
-
-        const cumulativeGPA = (totalGradePoints + oldGPA * oldGPAHours + newGPA * newGPAHours) / (totalHours + oldGPAHours + newGPAHours);
-
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = `Cumulative GPA: ${cumulativeGPA.toFixed(2)}`;
-    }
-
-    function createGPAInput(placeholder) {
-        const gpaInput = document.createElement("input");
-        gpaInput.type = "text";
-        gpaInput.placeholder = placeholder;
-        return gpaInput;
-    }
-
-    function createHoursInput(placeholder) {
-        const hoursInput = document.createElement("input");
-        hoursInput.type = "text";
-        hoursInput.placeholder = placeholder;
-        return hoursInput;
-    }
-
-    function removeAllSubjects() {
-        const inputDiv = document.getElementById("inputs");
-        const cumulativeInputs = document.getElementById("cumulative-inputs");
-    
-        inputDiv.innerHTML = ""; 
-        cumulativeInputs.style.display = "none"; 
+    window.removeAllSubjects = function () {
+        document.getElementById("inputs").querySelectorAll(".subject").forEach(subject => subject.remove());
+        subjects.length = 0; // Clear the subjects array
         updateSubjectsArray();
-    }
-    
-    function updateSubjectsArray() {
-        subjects.length = 0;
-        const subjectInputs = document.querySelectorAll(".subject");
-        subjectInputs.forEach((input) => subjects.push(input));
+
+        // Clear the values of previous GPA and hours but keep the input fields
+        document.getElementById("prev-gpa").value = "";
+        document.getElementById("prev-hours").value = "";
+    };
+
+    function calculateTotalGradePoints() {
+        let totalGradePoints = 0;
+
+        subjects.forEach(subject => {
+            const grade = subject.querySelector("input[type='text']").value;
+            const hours = parseFloat(subject.querySelector("input[type='number']").value) || 0;
+
+            const gradePoint = getGradePoint(grade);
+            totalGradePoints += (gradePoint * hours);
+        });
+
+        return totalGradePoints;
     }
 
-    function convertGradeToNumeric(grade) {
+    function calculateTotalHours() {
+        let totalHours = 0;
+
+        subjects.forEach(subject => {
+            const hours = parseFloat(subject.querySelector("input[type='number']").value) || 0;
+            totalHours += hours;
+        });
+
+        return totalHours;
+    }
+
+    function getGradePoint(grade) {
         switch (grade.toUpperCase()) {
-            case "A":
-                return 4.0;
-            case "B+":
-                return 3.5;
-            case "B":
-                return 3.0;
-            case "C+":
-                return 2.5;
-            case "C":
-                return 2.0;
-            case "D":
-                return 1.5;
-            case "F":
-                return 0;
-            default:
-                return NaN;
+            case "A": return 4;
+            case "B+": return 3.5;
+            case "B": return 3;
+            case "C+": return 2.5;
+            case "C": return 2;
+            case "D": return 1.5;
+            case "F": return 0;
+            default: return 0; // Invalid grade
         }
     }
 
-    window.createSubjectInput = createSubjectInput;
-    window.toggleCumulativeInputFields = toggleCumulativeInputFields;
-    window.calculateGPA = calculateGPA;
-    window.calculateCumulativeGPA = calculateCumulativeGPA;
-    window.removeAllSubjects = removeAllSubjects;
+    function showResult(message, type = "success") {
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = message;
+        resultDiv.style.backgroundColor = type === "error" ? "#ef4444" : "#22c55e";
+        resultDiv.style.color = "white";
+    }
+
+    function createPrevGPAInputs() {
+        const prevGPAInput = document.createElement("input");
+        prevGPAInput.id = "prev-gpa";
+        prevGPAInput.type = "number"; // Change to number for GPA input
+        prevGPAInput.placeholder = "Enter previous GPA";
+
+        const prevHoursInput = document.createElement("input");
+        prevHoursInput.id = "prev-hours";
+        prevHoursInput.type = "number"; // Change to number for hours input
+        prevHoursInput.placeholder = "Enter previous hours";
+
+        document.getElementById("inputs").appendChild(prevGPAInput);
+        document.getElementById("inputs").appendChild(prevHoursInput);
+    }
+
+    function updateSubjectsArray() {
+        subjects.length = 0; // Reset the subjects array
+        document.querySelectorAll(".subject").forEach(subject => subjects.push(subject));
+    }
 });
