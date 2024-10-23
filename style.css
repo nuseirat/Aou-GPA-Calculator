@@ -9,6 +9,7 @@
     --btn-danger: #ef4444;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --border: rgba(255, 255, 255, 0.2);
+    --result-bg: rgba(255, 255, 255, 0.85); /* New variable for result background */
 
     /* Dark Theme */
     --primary-bg-dark: linear-gradient(135deg, #020617, #1e293b);
@@ -85,7 +86,6 @@ body.dark-mode {
     z-index: 10;
 }
 
-
 .dark-mode .theme-toggle {
     background: var(--glass-bg-dark);
     color: var(--text-color-dark);
@@ -106,24 +106,6 @@ body.dark-mode {
     height: 100px;
     width: auto;
     transition: all 0.3s ease;
-}
-
-.light-logo {
-    display: block;
-    margin: 0 auto;
-}
-
-.dark-logo {
-    display: none;
-    margin: 0 auto;
-}
-
-.dark-mode .light-logo {
-    display: none;
-}
-
-.dark-mode .dark-logo {
-    display: block;
 }
 
 .calculator-container {
@@ -182,174 +164,74 @@ input {
     padding: 1rem;
     background: var(--glass-bg);
     border-radius: 0.75rem;
-    animation: slideIn 0.3s ease forwards;
+    transition: all 0.3s ease;
 }
 
 .dark-mode .subject {
     background: var(--glass-bg-dark);
 }
 
-.button-group {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
     padding: 1rem;
     border: none;
     border-radius: 0.75rem;
-    font-size: 1rem;
-    font-weight: 600;
     cursor: pointer;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    color: white;
 }
 
-.btn i {
-    font-size: 1.2rem;
+.btn-primary {
+    background: var(--btn-primary);
+    color: var(--text-color);
 }
 
-.btn-primary { background: var(--btn-primary); }
-.btn-success { background: var(--btn-success); }
-.btn-danger { background: var(--btn-danger); }
+.btn-success {
+    background: var(--btn-success);
+    color: var(--text-color);
+}
 
-.dark-mode .btn-primary { background: var(--btn-primary-dark); }
-.dark-mode .btn-success { background: var(--btn-success-dark); }
-.dark-mode .btn-danger { background: var(--btn-danger-dark); }
+.btn-danger {
+    background: var(--btn-danger);
+    color: var(--text-color);
+}
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    opacity: 0.8;
 }
 
 .result {
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.2rem;
+    padding: 1rem;
     margin-top: 2rem;
-}
-
-.footer {
-    padding: 2rem;
     text-align: center;
-    margin-top: auto;
+    border-radius: 0.75rem;
+    background: var(--result-bg); /* New background for results */
 }
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.footer-text {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.social-links {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1rem;
-}
-
-.social-link {
-    color: var(--text-color);
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-
-.dark-mode .social-link {
-    color: var(--text-color-dark);
-}
-
-.social-link:hover {
-    opacity: 1;
-    transform: translateY(-3px);
-}
-
-/* Add these styles to your existing CSS */
 
 .hidden {
     display: none;
 }
 
-.remove-button {
-    background: var(--btn-danger);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+.footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.social-links {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    gap: 1rem;
+}
+
+.social-link {
+    color: var(--text-color);
     transition: all 0.3s ease;
 }
 
-.dark-mode .remove-button {
-    background: var(--btn-danger-dark);
-}
-
-.remove-button:hover {
+.social-link:hover {
     transform: scale(1.1);
-}
-
-.result:not(.hidden) {
-    display: block;
-    animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 1rem;
-    }
-
-    .input-group,
-    .button-group {
-        grid-template-columns: 1fr;
-    }
-
-    .subject {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-
-    .theme-toggle {
-        top: 2rem;
-        right: 2rem;
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.2rem;
-    }
 }
