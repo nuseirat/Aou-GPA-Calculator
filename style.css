@@ -303,10 +303,7 @@ input {
     transform: scale(1.1);
 }
 
-.result:not(.hidden) {
-    display: block;
-    animation: fadeIn 0.5s ease forwards;
-}
+
 
 @keyframes fadeIn {
     from {
