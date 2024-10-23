@@ -257,8 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function showResult(message, type = "success") {
         const resultDiv = document.getElementById("result");
         resultDiv.innerHTML = message;
-        resultDiv.classList.remove("hidden");
-        resultDiv.style.opacity = "0";
         
         gsap.to(resultDiv, {
             duration: 0.5,
