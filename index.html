@@ -3,42 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOU GPA</title>
+    <title>GPA Calculator | AOU</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <img src="https://www.arabou.edu.sa/assets/common/images/logo.png?v=2" alt="AOU Logo" class="logo">
-    
-    <div class="container">
-        <h1 class="headertext">حساب المعدل التراكمي الجامعة العربية المفتوحة</h1>
-        <p class="subtitle">Arab Open University GPA Calculator</p>
-        
-        <div id="inputs"></div>
-        
-        <div class="action-buttons">
-            <button class="add-subject-button" onclick="createSubjectInput()">Add Subject</button>
-            <button class="calculate-gpa-button" onclick="calculateGPA()">Calculate GPA</button>
-            <button class="remove-all-button" onclick="removeAllSubjects()">Remove All</button>
+    <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </button>
+
+    <main class="container">
+        <div class="logo-container glass-effect">
+            
+            </button>
+            <img src="https://www.arabou.edu.sa/assets/common/images/logo-footer-ar.png" alt="AOU Logo" class="logo">
         </div>
 
-        <div id="result"></div>
-    </div>
+        <div class="calculator-container glass-effect">
+            <h1>حساب المعدل التراكمي للجامعة العربية المفتوحة</h1>
 
-    <footer>
-        <span class="author">By Mohammed Nuseirat<br>Update 2.0</span>
-        <div class="social-icons">
-            <a href="https://github.com/nuseirat" target="_blank">
-                <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png" alt="GitHub">
-            </a>
-            <a href="https://www.linkedin.com/in/mohammednuseirat/" target="_blank">
-                <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/1384/1384014.png" alt="LinkedIn">
-            </a>
-            <a href="https://nuseirat.github.io/" target="_blank">
-                <img class="footer-icon" src="https://cdn-icons-png.flaticon.com/128/3178/3178162.png" alt="Website">
-            </a>
+            <div class="previous-gpa-section">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <label for="prev-gpa"></label>
+                        <input type="number" id="prev-gpa" step="0.01" min="0" max="4" placeholder="Enter previous GPA / المعدل السابق">
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="prev-hours"></label>
+                        <input type="number" id="prev-hours" min="0" placeholder="Enter previous hours / عدد الساعات السابقة">
+                    </div>
+                </div>
+            </div>
+
+            <div id="subjects-container" class="subjects-container">
+                <!-- Subjects will be added here dynamically -->
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="addSubject()">
+                    <i class="fas fa-plus"></i>
+                    Add Subject
+                </button>
+                <button class="btn btn-success" onclick="calculateGPA()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate
+                </button>
+                <button class="btn btn-danger" onclick="clearAll()">
+                    <i class="fas fa-trash"></i>
+                    Clear All
+                </button>
+            </div>
+
+            <div id="result" class="result glass-effect hidden">
+                <!-- Results will be displayed here -->
+            </div>
         </div>
-    </footer>
 
+        <footer class="footer glass-effect">
+            <div class="footer-content">
+                <p class="footer-text">Developed by Mohammed Nuseirat • v2.0</p>
+                <div class="social-links">
+                    <a href="https://github.com/nuseirat" target="_blank" class="social-link">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mohammednuseirat" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="https://x.com/mohanuseirat" target="_blank" class="social-link">
+                        <i class="fa-brands fa-x-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/86e812f22e.js" crossorigin="anonymous"></script>
 </body>
 </html>
