@@ -9,50 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: 'power3.out'
     });
 
-    // Theme toggle functionality with persistence
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-    }
-
-    // Theme toggle with animation
-    themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        
-        // Save theme preference
-        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-        
-        // Animate theme toggle button
-        gsap.to(themeToggleBtn, {
-            duration: 0.3,
-            rotate: 180,
-            ease: 'power2.out',
-            onComplete: () => {
-                gsap.set(themeToggleBtn, { rotate: 0 });
-            }
-        });
-        
-        // Animate logo transition
-        gsap.to('.logo', {
-            duration: 0.3,
-            opacity: 0,
-            scale: 0.9,
-            ease: 'power2.out',
-            onComplete: () => {
-                gsap.to('.logo', {
-                    duration: 0.3,
-                    opacity: 1,
-                    scale: 1,
-                    ease: 'power2.out'
-                });
-            }
-        });
-    });
-
     // Function to add a new subject (connected to HTML button)
     window.addSubject = function() {
         const subjectInput = document.createElement("div");
@@ -258,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const resultDiv = document.getElementById("result");
         resultDiv.innerHTML = message;
         resultDiv.classList.remove("hidden");
-
+        resultDiv.style.opacity = "0";
         
         gsap.to(resultDiv, {
             duration: 0.5,
@@ -285,6 +241,4 @@ document.addEventListener("DOMContentLoaded", function () {
             this.classList.remove('invalid');
         }
     });
-
-    
 });
