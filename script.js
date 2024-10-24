@@ -1,13 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const subjects = [];
 
-    // Initial animations
-    gsap.from('.container', {
-        duration: 1,
-        opacity: 0,
-        y: 50,
-        ease: 'power3.out'
-    });
 
     // Function to add a new subject (connected to HTML button)
     window.addSubject = function() {
