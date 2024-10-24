@@ -1,72 +1,104 @@
+<!-- Created by Mohammed Nuseirat -->
 <!DOCTYPE html>
+<!-- Setting language to English -->
 <html lang="en">
 <head>
+    <!-- Character encoding for Unicode support -->
     <meta charset="UTF-8">
+    <!-- Responsive viewport settings for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title showing app name and institution -->
     <title>GPA Calculator | AOU</title>
+    <!-- Link to custom CSS stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome icons library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-   
-
+    <!-- Main container wrapper -->
     <main class="container">
+        <!-- Logo section with glass effect -->
         <div class="logo-container glass-effect">
-            
-            </button>
+            <!-- University logo image -->
             <img src="https://www.arabou.edu.sa/assets/common/images/logo-footer-ar.png" alt="AOU Logo" class="logo">
         </div>
 
+        <!-- Main calculator container with glass effect -->
         <div class="calculator-container glass-effect">
+            <!-- Arabic title for GPA calculator -->
             <h1>حساب المعدل التراكمي للجامعة العربية المفتوحة</h1>
 
+            <!-- Previous GPA input section -->
             <div class="previous-gpa-section">
                 <div class="input-group">
+                    <!-- Previous GPA input field -->
                     <div class="input-wrapper">
                         <label for="prev-gpa"></label>
-                        <input type="number" id="prev-gpa" step="0.01" min="0" max="4" placeholder="Enter previous GPA / المعدل السابق">
+                        <input type="number" 
+                               id="prev-gpa" 
+                               step="0.01" 
+                               min="0" 
+                               max="4" 
+                               placeholder="Enter previous GPA / المعدل السابق">
                     </div>
+                    <!-- Previous hours input field -->
                     <div class="input-wrapper">
                         <label for="prev-hours"></label>
-                        <input type="number" id="prev-hours" min="0" placeholder="Enter previous hours / الساعات السابقة">
+                        <input type="number" 
+                               id="prev-hours" 
+                               min="0" 
+                               placeholder="Enter previous hours / الساعات السابقة">
                     </div>
                 </div>
             </div>
 
+            <!-- Container for dynamically added subjects -->
             <div id="subjects-container" class="subjects-container">
-                <!-- Subjects will be added here dynamically -->
+                <!-- Subjects will be added here dynamically via JavaScript -->
             </div>
 
+            <!-- Action buttons group -->
             <div class="button-group">
+                <!-- Add subject button -->
                 <button class="btn btn-primary" onclick="addSubject()">
                     <i class="fas fa-plus"></i>
                     Add Subject
                 </button>
+                <!-- Calculate GPA button -->
                 <button class="btn btn-success" onclick="calculateGPA()">
                     <i class="fas fa-calculator"></i>
                     Calculate
                 </button>
+                <!-- Clear all inputs button -->
                 <button class="btn btn-danger" onclick="clearAll()">
                     <i class="fas fa-trash"></i>
                     Clear All
                 </button>
             </div>
 
+            <!-- Results container (hidden by default) -->
             <div id="result" class="result glass-effect hidden">
-                <!-- Results will be displayed here -->
+                <!-- Results will be displayed here via JavaScript -->
             </div>
         </div>
 
+        <!-- Footer section -->
         <footer class="footer glass-effect">
             <div class="footer-content">
-                <p class="footer-text">Developed by Mohammed Nuseirat • v2.0</p>
+                <!-- Developer credit -->
+                <p class="footer-text">Developed by Mohammed Nuseirat 
+                    <br>• v2.0</p>
+                <!-- Social media links -->
                 <div class="social-links">
+                    <!-- GitHub profile link -->
                     <a href="https://github.com/nuseirat" target="_blank" class="social-link">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
+                    <!-- LinkedIn profile link -->
                     <a href="https://linkedin.com/in/mohammednuseirat" target="_blank" class="social-link">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
+                    <!-- Twitter/X profile link -->
                     <a href="https://x.com/mohanuseirat" target="_blank" class="social-link">
                         <i class="fa-brands fa-x-twitter fa-2x"></i>
                     </a>
@@ -75,13 +107,12 @@
         </footer>
     </main>
 
+    <!-- JavaScript libraries and scripts -->
+    <!-- GSAP animation library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Custom JavaScript file -->
     <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/86e812f22e.js" crossorigin="anonymous"></script>
-</body>
-</html>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Font Awesome kit -->
     <script src="https://kit.fontawesome.com/86e812f22e.js" crossorigin="anonymous"></script>
 </body>
 </html>
