@@ -4,6 +4,11 @@
 In this update, I have introduced several new features and enhancements to improve the user experience of the AOU GPA Calculator. 
 The primary goal of this release is to provide users with a more intuitive interface and streamline the process of calculating GPA.
 
+
+## New 
+![لقطة شاشة 2024-10-24 040541](https://github.com/user-attachments/assets/1a5d73ac-6167-4503-a07f-ed8d0f0286f9)
+
+## Old
 ![لقطة شاشة 2024-10-23 215500](https://github.com/user-attachments/assets/3a695d15-9d73-4d18-b15b-aae9b42d4891)
 
 ### New Features
