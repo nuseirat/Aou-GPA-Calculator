@@ -33,7 +33,7 @@ Contributions are welcome! If you have ideas for improvements, bug fixes, or add
 
 ## Author
 
-This GPA Calculator was created by **Mohammed Nuseirat**. Connect with me on [LinkedIn](https://www.linkedin.com/in/mohammednuseirat/) and [Twitter](https://x.com/MohaNuseirat).
+This GPA Calculator was created by **Mohammed Nuseirat**. Connect with me on [LinkedIn](https://www.linkedin.com/in/mohammednuseirat/) and [X](https://x.com/MohaNuseirat).
 
 ## License
 
