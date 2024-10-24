@@ -1,24 +1,29 @@
+/* Created by Mohammed Nuseirat*/
+
+/* Define CSS custom properties (variables) for consistent theming across the application */
 :root {
-    --primary-bg: linear-gradient(135deg, #020617, #1e293b);
-    --glass-bg: rgba(30, 41, 59, 0.7);
-    --text-color: #e2e8f0;
-    --input-bg: rgba(30, 41, 59, 0.8);
-    --btn-primary: #1e3a8a;
-    --btn-success: #059669;
-    --btn-danger: #991b1b;
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --border: rgba(255, 255, 255, 0.1);
-    --invalid-color: #ef4444;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
+    --primary-bg: linear-gradient(135deg, #020617, #1e293b);    /* Dark gradient background */
+    --glass-bg: rgba(30, 41, 59, 0.7);                          /* Semi-transparent background for glass effect */
+    --text-color: #e2e8f0;                                      /* Light text color for dark theme */
+    --input-bg: rgba(30, 41, 59, 0.8);                         /* Slightly darker background for input fields */
+    --btn-primary: #1e3a8a;                                     /* Deep blue for primary buttons */
+    --btn-success: #059669;                                     /* Green for success buttons */
+    --btn-danger: #991b1b;                                      /* Red for danger/delete buttons */
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);                   /* Subtle shadow for depth */
+    --border: rgba(255, 255, 255, 0.1);                        /* Light border for glass effect */
+    --invalid-color: #ef4444;                                   /* Red for validation errors */
+    --success-color: #10b981;                                   /* Green for success states */
+    --warning-color: #f59e0b;                                   /* Orange for warnings */
 }
 
+/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Base body styles with flexbox centering */
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
@@ -30,6 +35,7 @@ body {
     padding: 2rem;
 }
 
+/* Reusable glass morphism effect */
 .glass-effect {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -38,6 +44,7 @@ body {
     box-shadow: var(--shadow);
 }
 
+/* Main container layout */
 .container {
     width: 100%;
     max-width: 900px;
@@ -46,22 +53,26 @@ body {
     gap: 2rem;
 }
 
+/* Logo section styling */
 .logo-container {
     position: relative;
     text-align: center;
     padding: 2rem;
 }
 
+/* Logo image styling with smooth transition */
 .logo {
     height: 100px;
     width: auto;
     transition: all 0.3s ease;
 }
 
+/* Calculator section container */
 .calculator-container {
     padding: 2rem;
 }
 
+/* Main heading styles */
 h1 {
     text-align: center;
     margin-bottom: 2rem;
@@ -69,6 +80,7 @@ h1 {
     font-weight: 700;
 }
 
+/* Grid layout for input fields */
 .input-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -76,12 +88,14 @@ h1 {
     margin-bottom: 2rem;
 }
 
+/* Individual input field container */
 .input-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
+/* Input field styling */
 input {
     width: 100%;
     padding: 1rem;
@@ -93,18 +107,21 @@ input {
     transition: all 0.3s ease;
 }
 
+/* Input focus state */
 input:focus {
     outline: none;
     border-color: var(--btn-primary);
     box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.3);
 }
 
+/* Input label styling */
 .input-label {
     font-size: 0.875rem;
     color: var(--text-color);
     opacity: 0.9;
 }
 
+/* Container for subject entries */
 .subjects-container {
     display: flex;
     flex-direction: column;
@@ -112,6 +129,7 @@ input:focus {
     margin-bottom: 2rem;
 }
 
+/* Individual subject entry styling */
 .subject {
     display: grid;
     grid-template-columns: 1.5fr 1fr auto;
@@ -123,6 +141,7 @@ input:focus {
     animation: slideIn 0.3s ease forwards;
 }
 
+/* Button group layout */
 .button-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -130,6 +149,7 @@ input:focus {
     margin-bottom: 2rem;
 }
 
+/* Base button styles */
 .btn {
     display: flex;
     align-items: center;
@@ -145,24 +165,29 @@ input:focus {
     color: white;
 }
 
+/* Icon sizing within buttons */
 .btn i {
     font-size: 1.2rem;
 }
 
+/* Button variants */
 .btn-primary { background: var(--btn-primary); }
 .btn-success { background: var(--btn-success); }
 .btn-danger { background: var(--btn-danger); }
 
+/* Button hover effects */
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
     opacity: 0.9;
 }
 
+/* Button active state */
 .btn:active {
     transform: translateY(0);
 }
 
+/* Remove button styling */
 .remove-button {
     background: var(--btn-danger);
     color: white;
@@ -178,22 +203,26 @@ input:focus {
     transition: all 0.3s ease;
 }
 
+/* Remove button hover effect */
 .remove-button:hover {
     transform: scale(1.1);
     opacity: 0.9;
 }
 
+/* Results section container */
 .result {
     padding: 2rem;
     margin-top: 2rem;
 }
 
+/* Results content layout */
 .result-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+/* Individual result item styling */
 .result-item {
     display: flex;
     justify-content: space-between;
@@ -203,22 +232,26 @@ input:focus {
     border-radius: 0.75rem;
 }
 
+/* Result label styling */
 .result-label {
     font-weight: 500;
     opacity: 0.9;
 }
 
+/* Result value styling */
 .result-value {
     font-weight: 600;
     font-size: 1.1rem;
 }
 
+/* Footer section styling */
 .footer-content {
     text-align: center;
     padding: 2rem;
     opacity: 0.8;
 }
 
+/* Social links container */
 .social-links {
     display: flex;
     justify-content: center;
@@ -226,26 +259,30 @@ input:focus {
     margin-top: 1rem;
 }
 
+/* Individual social link styling */
 .social-link {
     color: var(--text-color);
     opacity: 0.8;
     transition: all 0.3s ease;
 }
 
+/* Social link hover effect */
 .social-link:hover {
     opacity: 1;
     transform: translateY(-3px);
 }
 
+/* Invalid input state */
 .invalid {
     border-color: var(--invalid-color);
 }
 
+/* Hide elements */
 .hidden {
     display: none;
 }
 
-/* Animations */
+/* Animation keyframes */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -268,7 +305,7 @@ input:focus {
     }
 }
 
-/* Responsive Design */
+/* Responsive design for mobile devices */
 @media (max-width: 768px) {
     body {
         padding: 1rem;
@@ -295,11 +332,12 @@ input:focus {
     }
 }
 
-/* Loading Animation */
+/* Loading state styles */
 .loading {
     position: relative;
 }
 
+/* Loading overlay animation */
 .loading::after {
     content: '';
     position: absolute;
@@ -315,6 +353,7 @@ input:focus {
     animation: pulse 1.5s infinite;
 }
 
+/* Loading pulse animation */
 @keyframes pulse {
     0% { opacity: 0.7; }
     50% { opacity: 0.4; }
