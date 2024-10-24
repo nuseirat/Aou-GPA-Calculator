@@ -30,21 +30,26 @@ body {
     padding: 2rem;
 }
 
+/* Update the glass effect properties for better mobile performance */
 .glass-effect {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    background: rgba(30, 41, 59, 0.9); /* Increased opacity for better visibility */
+    backdrop-filter: blur(5px); /* Reduced blur for better performance */
+    -webkit-backdrop-filter: blur(5px); /* Added for iOS support */
     border: 1px solid var(--border);
     border-radius: 1.5rem;
     box-shadow: var(--shadow);
 }
 
+/* Optimize container background for mobile */
 .container {
     width: 100%;
     max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    background: none; /* Remove any background that might cause layering issues */
 }
+
 
 .logo-container {
     position: relative;
@@ -245,74 +250,67 @@ input:focus {
     display: none;
 }
 
-/* Animations */
+/* Fix animation performance issues */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate3d(0, 20px, 0);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translate3d(0, -10px, 0);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-/* Responsive Design */
+/* Enhance mobile-specific styles */
 @media (max-width: 768px) {
     body {
         padding: 1rem;
+        background: var(--primary-bg);
+        min-height: 100vh;
+        /* Force hardware acceleration */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 
-    .input-group,
-    .button-group {
-        grid-template-columns: 1fr;
+    .calculator-container {
+        background: var(--glass-bg);
+        /* Simplified background for mobile */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
+    /* Brighten input fields on mobile */
+    input {
+        background: rgba(30, 41, 59, 0.95);
+    }
+
+    /* Enhance subject visibility */
     .subject {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
+        background: rgba(30, 41, 59, 0.95);
     }
 
-    h1 {
-        font-size: 1.8rem;
-    }
-
+    /* Improve result visibility */
     .result-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
+        background: rgba(30, 41, 59, 0.95);
     }
-}
 
-/* Loading Animation */
-.loading {
-    position: relative;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 0.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 1.5s infinite;
+    /* Remove loading animation opacity on mobile */
+    .loading::after {
+        animation: none;
+        background: rgba(30, 41, 59, 0.9);
+    }
 }
 
 @keyframes pulse {
