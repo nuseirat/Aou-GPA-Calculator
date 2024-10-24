@@ -1,26 +1,35 @@
+// Created by Mohammed Nuseirat
+
+// script.js
 document.addEventListener("DOMContentLoaded", function () {
+    // Array to store all subject input elements
     const subjects = [];
 
-
-    // Function to add a new subject (connected to HTML button)
+    // Add Subject Button Handler
     window.addSubject = function() {
+        // Create container for new subject inputs
         const subjectInput = document.createElement("div");
         subjectInput.className = "subject";
 
+        // Create grade input field
         const gradeInput = document.createElement("input");
         gradeInput.type = "text";
         gradeInput.placeholder = "Enter grade (A, B+, B, C+, C, D, F)";
         gradeInput.className = "grade-input";
 
+        // Create credit hours input field
         const hoursInput = document.createElement("input");
         hoursInput.type = "number";
         hoursInput.placeholder = "Enter hours";
         hoursInput.className = "hours-input";
         hoursInput.min = "1";
 
+        // Create remove button with icon
         const removeButton = document.createElement("button");
         removeButton.innerHTML = '<i class="fas fa-times"></i>';
         removeButton.className = "remove-button";
+        
+        // Add animation and removal functionality to remove button
         removeButton.addEventListener("click", function () {
             gsap.to(subjectInput, {
                 duration: 0.3,
@@ -34,14 +43,16 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
+        // Assemble the subject input container
         subjectInput.appendChild(gradeInput);
         subjectInput.appendChild(hoursInput);
         subjectInput.appendChild(removeButton);
 
+        // Add to DOM and subjects array
         document.getElementById("subjects-container").appendChild(subjectInput);
         subjects.push(subjectInput);
 
-        // Animate new subject row
+        // Animate new subject entry
         gsap.from(subjectInput, {
             duration: 0.5,
             opacity: 0,
@@ -49,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ease: 'power2.out'
         });
 
-        // Add input validation
+        // Validate grade input
         gradeInput.addEventListener('input', function() {
             this.value = this.value.toUpperCase();
             const validGrades = ['A', 'B+', 'B', 'C+', 'C', 'D', 'F'];
@@ -60,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Validate hours input
         hoursInput.addEventListener('input', function() {
             if (this.value < 1) {
                 this.classList.add('invalid');
@@ -69,10 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    // Function to clear all (connected to HTML button)
+    // Clear All Button Handler
     window.clearAll = function() {
         const subjectInputs = document.querySelectorAll(".subject");
         
+        // Animate removal of all subjects
         gsap.to(subjectInputs, {
             duration: 0.3,
             opacity: 0,
@@ -80,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             stagger: 0.1,
             ease: 'power2.in',
             onComplete: () => {
+                // Clear all inputs and results
                 document.getElementById("subjects-container").innerHTML = '';
                 subjects.length = 0;
                 document.getElementById("prev-gpa").value = "";
@@ -89,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Animate clear effect
+        // Animate calculator container
         gsap.to('.calculator-container', {
             duration: 0.2,
             scale: 0.98,
@@ -99,39 +113,44 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    // Calculate GPA function (connected to HTML button)
+    // Calculate GPA Button Handler
     window.calculateGPA = function() {
-        // Validate inputs before calculation
+        // Validate all inputs before calculation
         const invalidInputs = document.querySelectorAll('.invalid');
         if (invalidInputs.length > 0) {
             showResult("Please correct invalid inputs before calculating", "error");
             return;
         }
 
+        // Calculate totals
         const totalGradePoints = calculateTotalGradePoints();
         const totalHours = calculateTotalHours();
 
+        // Get previous GPA data
         const prevGPA = parseFloat(document.getElementById("prev-gpa").value) || 0;
         const prevHours = parseFloat(document.getElementById("prev-hours").value) || 0;
 
-        // Validate GPA range
+        // Validate previous GPA
         if (prevGPA > 4) {
             showResult("Previous GPA cannot be greater than 4.0", "error");
             return;
         }
 
+        // Calculate cumulative statistics
         const cumulativeGradePoints = totalGradePoints + (prevGPA * prevHours);
         const cumulativeTotalHours = totalHours + prevHours;
 
+        // Validate hours
         if (totalHours === 0 && prevHours === 0) {
             showResult("Please enter valid grades and hours", "error");
             return;
         }
 
+        // Calculate GPAs
         const currentGPA = totalHours === 0 ? 0 : totalGradePoints / totalHours;
         const cumulativeGPA = cumulativeTotalHours === 0 ? 0 : cumulativeGradePoints / cumulativeTotalHours;
 
-        // Format result with enhanced styling
+        // Format and display results
         const resultHTML = `
             <div class="result-content">
                 <div class="result-item">
@@ -155,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         showResult(resultHTML);
 
-        // Animate calculation effect
+        // Animate result items
         gsap.from('.result-item', {
             duration: 0.5,
             opacity: 0,
@@ -165,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
+    // Helper function to calculate total grade points
     function calculateTotalGradePoints() {
         let totalGradePoints = 0;
 
@@ -179,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return totalGradePoints;
     }
 
+    // Helper function to calculate total hours
     function calculateTotalHours() {
         let totalHours = 0;
 
@@ -190,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return totalHours;
     }
 
+    // Convert letter grades to grade points
     function getGradePoint(grade) {
         const gradePoints = {
             'A': 4,
@@ -203,12 +225,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return gradePoints[grade.toUpperCase()] || 0;
     }
 
+    // Display result with animation
     function showResult(message, type = "success") {
         const resultDiv = document.getElementById("result");
         resultDiv.innerHTML = message;
         resultDiv.classList.remove("hidden");
         resultDiv.style.opacity = "0";
         
+        // Animate result appearance
         gsap.to(resultDiv, {
             duration: 0.5,
             opacity: 1,
@@ -216,16 +240,17 @@ document.addEventListener("DOMContentLoaded", function () {
             ease: 'power2.out'
         });
 
-        // Scroll to result if it's not in view
+        // Scroll result into view
         resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    // Update subjects array after removal
     function updateSubjectsArray() {
         subjects.length = 0;
         document.querySelectorAll(".subject").forEach(subject => subjects.push(subject));
     }
 
-    // Add validation for previous GPA inputs
+    // Validate previous GPA input
     const prevGPAInput = document.getElementById("prev-gpa");
     prevGPAInput.addEventListener('input', function() {
         if (this.value > 4) {
