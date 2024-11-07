@@ -1,5 +1,6 @@
 // Created by Mohammed Nuseirat
 
+
 // script.js
 document.addEventListener("DOMContentLoaded", function () {
     // Array to store all subject input elements
