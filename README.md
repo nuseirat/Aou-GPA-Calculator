@@ -38,4 +38,3 @@ This GPA Calculator was created by **Mohammed Nuseirat**. Connect with me on [Li
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
