@@ -1,29 +1,48 @@
-/* Created by Mohammed Nuseirat*/
+/*
+    AOU GPA Calculator - CSS Styles
+    Created by Mohammed Nuseirat
+    Version: 2.0
+    
+    This stylesheet contains all the styling for the GPA calculator,
+    including responsive design, animations, and glassmorphism effects.
+*/
 
-/* Define CSS custom properties (variables) for consistent theming across the application */
+/* ===== CSS CUSTOM PROPERTIES (VARIABLES) ===== */
+/* These variables define the color scheme and consistent values used throughout the application */
 :root {
-    --primary-bg: linear-gradient(135deg, #020617, #1e293b);    /* Dark gradient background */
-    --glass-bg: rgba(30, 41, 59, 0.7);                          /* Semi-transparent background for glass effect */
-    --text-color: #e2e8f0;                                      /* Light text color for dark theme */
-    --input-bg: rgba(30, 41, 59, 0.8);                         /* Slightly darker background for input fields */
-    --btn-primary: #1e3a8a;                                     /* Deep blue for primary buttons */
-    --btn-success: #059669;                                     /* Green for success buttons */
-    --btn-danger: #991b1b;                                      /* Red for danger/delete buttons */
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);                   /* Subtle shadow for depth */
-    --border: rgba(255, 255, 255, 0.1);                        /* Light border for glass effect */
-    --invalid-color: #ef4444;                                   /* Red for validation errors */
-    --success-color: #10b981;                                   /* Green for success states */
-    --warning-color: #f59e0b;                                   /* Orange for warnings */
+    /* Background colors with gradient for modern look */
+    --primary-bg: linear-gradient(135deg, #020617, #1e293b);
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    
+    /* Text and UI colors */
+    --text-color: #e2e8f0;
+    --input-bg: rgba(30, 41, 59, 0.8);
+    
+    /* Button color variants */
+    --btn-primary: #1e3a8a;     /* Deep blue for primary actions */
+    --btn-success: #059669;     /* Green for success actions */
+    --btn-danger: #991b1b;      /* Red for dangerous actions */
+    
+    /* Visual effects */
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --border: rgba(255, 255, 255, 0.1);
+    
+    /* Status colors for validation and feedback */
+    --invalid-color: #ef4444;   /* Red for errors */
+    --success-color: #10b981;   /* Green for success */
+    --warning-color: #f59e0b;   /* Orange for warnings */
+    --info-color: #3b82f6;      /* Blue for information */
 }
 
-/* Reset default browser styles */
+/* ===== GLOBAL RESET AND BASE STYLES ===== */
+/* Reset browser default styles for consistent appearance across browsers */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base body styles with flexbox centering */
+/* Base body styles with flexbox centering and gradient background */
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
@@ -35,7 +54,8 @@ body {
     padding: 2rem;
 }
 
-/* Reusable glass morphism effect */
+/* ===== REUSABLE COMPONENTS ===== */
+/* Glass morphism effect - used throughout the application for modern UI */
 .glass-effect {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -44,7 +64,38 @@ body {
     box-shadow: var(--shadow);
 }
 
-/* Main container layout */
+/* Utility class to hide elements */
+.hidden {
+    display: none;
+}
+
+/* Loading state animation */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse 1.5s infinite;
+}
+
+/* Invalid input styling for form validation */
+.invalid {
+    border-color: var(--invalid-color);
+}
+
+/* ===== LAYOUT COMPONENTS ===== */
+/* Main container that holds all content */
 .container {
     width: 100%;
     max-width: 900px;
@@ -53,25 +104,27 @@ body {
     gap: 2rem;
 }
 
-/* Logo section styling */
+/* Logo section at the top */
 .logo-container {
     position: relative;
     text-align: center;
     padding: 2rem;
 }
 
-/* Logo image styling with smooth transition */
+/* University logo styling with hover effect */
 .logo {
     height: 100px;
     width: auto;
     transition: all 0.3s ease;
 }
 
-/* Calculator section container */
+/* Main calculator interface container */
 .calculator-container {
     padding: 2rem;
+    position: relative;
 }
 
+/* ===== TYPOGRAPHY ===== */
 /* Main heading styles */
 h1 {
     text-align: center;
@@ -80,7 +133,8 @@ h1 {
     font-weight: 700;
 }
 
-/* Grid layout for input fields */
+/* ===== FORM ELEMENTS ===== */
+/* Grid layout for input groups */
 .input-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -88,14 +142,14 @@ h1 {
     margin-bottom: 2rem;
 }
 
-/* Individual input field container */
+/* Individual input field wrapper */
 .input-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-/* Input field styling */
+/* Base input field styling */
 input {
     width: 100%;
     padding: 1rem;
@@ -107,21 +161,22 @@ input {
     transition: all 0.3s ease;
 }
 
-/* Input focus state */
+/* Input focus state with blue glow effect */
 input:focus {
     outline: none;
     border-color: var(--btn-primary);
     box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.3);
 }
 
-/* Input label styling */
+/* Input labels styling */
 .input-label {
     font-size: 0.875rem;
     color: var(--text-color);
     opacity: 0.9;
 }
 
-/* Container for subject entries */
+/* ===== DYNAMIC SUBJECT ENTRIES ===== */
+/* Container for all subject entries */
 .subjects-container {
     display: flex;
     flex-direction: column;
@@ -129,7 +184,7 @@ input:focus {
     margin-bottom: 2rem;
 }
 
-/* Individual subject entry styling */
+/* Individual subject entry layout */
 .subject {
     display: grid;
     grid-template-columns: 1.5fr 1fr auto;
@@ -141,6 +196,28 @@ input:focus {
     animation: slideIn 0.3s ease forwards;
 }
 
+/* Remove button for subject entries */
+.remove-button {
+    background: var(--btn-danger);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.remove-button:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* ===== BUTTONS ===== */
 /* Button group layout */
 .button-group {
     display: grid;
@@ -165,17 +242,17 @@ input:focus {
     color: white;
 }
 
-/* Icon sizing within buttons */
+/* Button icon sizing */
 .btn i {
     font-size: 1.2rem;
 }
 
-/* Button variants */
+/* Button color variants */
 .btn-primary { background: var(--btn-primary); }
 .btn-success { background: var(--btn-success); }
 .btn-danger { background: var(--btn-danger); }
 
-/* Button hover effects */
+/* Button hover effects with lift animation */
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
@@ -187,29 +264,8 @@ input:focus {
     transform: translateY(0);
 }
 
-/* Remove button styling */
-.remove-button {
-    background: var(--btn-danger);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
-
-/* Remove button hover effect */
-.remove-button:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
-}
-
-/* Results section container */
+/* ===== RESULTS SECTION ===== */
+/* Results display container */
 .result {
     padding: 2rem;
     margin-top: 2rem;
@@ -238,12 +294,13 @@ input:focus {
     opacity: 0.9;
 }
 
-/* Result value styling */
+/* Result value styling - emphasized */
 .result-value {
     font-weight: 600;
     font-size: 1.1rem;
 }
 
+/* ===== FOOTER ===== */
 /* Footer section styling */
 .footer-content {
     text-align: center;
@@ -251,7 +308,7 @@ input:focus {
     opacity: 0.8;
 }
 
-/* Social links container */
+/* Social media links container */
 .social-links {
     display: flex;
     justify-content: center;
@@ -272,17 +329,244 @@ input:focus {
     transform: translateY(-3px);
 }
 
-/* Invalid input state */
-.invalid {
-    border-color: var(--invalid-color);
+/* ===== INFO PANEL (MODAL) ===== */
+/* Info icon button styling */
+.info-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: var(--info-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;      /* Even smaller width */
+    height: 24px;     /* Even smaller height */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;  /* Even smaller icon */
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
-/* Hide elements */
-.hidden {
-    display: none;
+.info-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
 }
 
-/* Animation keyframes */
+/* Full-screen modal overlay */
+.info-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Active state for info panel */
+.info-panel.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal content container */
+.info-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    box-shadow: var(--shadow);
+    padding: 2.5rem 3rem 2rem 3rem;
+    max-width: 900px;           /* Wider modal */
+    width: 95vw;                /* Responsive width */
+    min-width: 320px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--info-color) rgba(30,41,59,0.2);
+    direction: ltr; /* Always ltr, let content align itself */
+}
+
+/* Custom scrollbar for Webkit browsers */
+.info-content::-webkit-scrollbar {
+    width: 10px;
+}
+.info-content::-webkit-scrollbar-thumb {
+    background: var(--info-color);
+    border-radius: 8px;
+}
+.info-content::-webkit-scrollbar-track {
+    background: rgba(30,41,59,0.2);
+    border-radius: 8px;
+}
+
+/* Transform info content when panel is active */
+.info-panel.active .info-content {
+    transform: scale(1);
+}
+
+/* Close button for modal */
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--btn-danger);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* ===== INFO PANEL CONTENT ===== */
+/* Info panel title */
+.info-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--info-color);
+    text-align: center;
+}
+
+/* Info sections */
+.info-section {
+    margin-bottom: 2rem;
+}
+
+/* Info section headings */
+.info-section h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--info-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Info section paragraphs */
+.info-section p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+/* FAQ items styling */
+.faq-item {
+    margin-bottom: 1.5rem;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+/* FAQ questions */
+.faq-question {
+    font-weight: 600;
+    color: var(--info-color);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* FAQ answers */
+.faq-answer {
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Grade table styling */
+.grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.grade-table th,
+.grade-table td {
+    padding: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.grade-table th {
+    background: var(--info-color);
+    font-weight: 600;
+}
+
+/* ===== LANGUAGE SWITCHER ===== */
+/* Language switcher container */
+.lang-switch {
+    position: relative;
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    align-items: center;
+    gap: 0;
+    background: rgba(30,41,59,0.2);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    left: 0;
+}
+
+/* Individual language button styles */
+.lang-btn {
+    background: none;
+    color: var(--info-color);
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+    opacity: 0.7;
+}
+
+.lang-btn.active {
+    background: var(--info-color);
+    color: #fff;
+    opacity: 1;
+}
+
+.lang-btn:not(:last-child) {
+    border-right: 1px solid rgba(59,130,246,0.15);
+}
+
+.lang-btn:hover {
+    opacity: 1;
+}
+
+/* ===== ANIMATIONS ===== */
+/* Fade in animation for results */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -294,6 +578,7 @@ input:focus {
     }
 }
 
+/* Slide in animation for new subjects */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -305,57 +590,96 @@ input:focus {
     }
 }
 
-/* Responsive design for mobile devices */
+/* Pulse animation for loading states */
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.7; }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Mobile devices - screens smaller than 768px */
 @media (max-width: 768px) {
+    /* Reduce body padding on mobile */
     body {
         padding: 1rem;
     }
 
+    /* Stack input groups and button groups vertically */
     .input-group,
     .button-group {
         grid-template-columns: 1fr;
     }
 
+    /* Stack subject entries vertically */
     .subject {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
 
+    /* Reduce heading size */
     h1 {
         font-size: 1.8rem;
     }
 
+    /* Stack result items vertically */
     .result-item {
         flex-direction: column;
         text-align: center;
         gap: 0.5rem;
     }
+
+    /* Adjust info panel for mobile */
+    .info-content {
+        margin: 1rem;
+        max-height: 90vh;
+    }
+    .lang-switch {
+        margin-bottom: 1rem;
+        padding: 0.1rem;
+        justify-content: flex-start; /* Keep left on mobile */
+        left: 0;
+    }
+    .lang-btn {
+        font-size: 0.95rem;
+        padding: 0.4rem 1rem;
+    }
+    /* Smaller info icon on mobile */
+    .info-icon {
+        top: 1rem;
+        right: 1rem;
+        width: 20px;      /* Smaller width */
+        height: 20px;     /* Smaller height */
+        font-size: 0.75rem; /* Smaller icon */
+    }
 }
 
-/* Loading state styles */
-.loading {
-    position: relative;
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+/* Focus styles for keyboard navigation */
+.btn:focus,
+input:focus,
+.info-icon:focus,
+.close-btn:focus,
+.remove-button:focus {
+    outline: 2px solid var(--info-color);
+    outline-offset: 2px;
 }
 
-/* Loading overlay animation */
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(30, 41, 59, 0.7);
-    border-radius: 0.75rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 1.5s infinite;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-color: #ffffff;
+        --border: rgba(255, 255, 255, 0.3);
+    }
 }
 
-/* Loading pulse animation */
-@keyframes pulse {
-    0% { opacity: 0.7; }
-    50% { opacity: 0.4; }
-    100% { opacity: 0.7; }
+/* Reduced motion support for users who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
