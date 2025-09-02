@@ -1,37 +1,54 @@
-<!-- Created by Mohammed Nuseirat -->
+<!-- 
+    AOU GPA Calculator - HTML Structure
+    Created by Mohammed Nuseirat
+    Version: 2.5
+    
+    This file contains the main HTML structure for the Arab Open University
+    GPA Calculator application. It includes the layout for input fields,
+    results display, and information modal.
+-->
 <!DOCTYPE html>
-<!-- Setting language to English -->
 <html lang="en">
 <head>
-    <!-- Character encoding for Unicode support -->
+    <!-- Meta tags for proper document handling -->
     <meta charset="UTF-8">
-    <!-- Responsive viewport settings for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Page title showing app name and institution -->
-    <title>GPA Calculator | AOU</title>
-    <!-- Link to custom CSS stylesheet -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome icons library -->
+    
+    <!-- Page title -->
+    <title>حساب المعدل التراكمي الجامعة العربية المفتوحة</title>
+    
+    <!-- External CSS libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Main container wrapper -->
+    <!-- Main application container -->
     <main class="container">
-        <!-- Logo section with glass effect -->
+        
+        <!-- University logo section -->
         <div class="logo-container glass-effect">
-            <!-- University logo image -->
-            <img src="https://www.arabou.edu.sa/assets/common/images/logo-footer-ar.png" alt="AOU Logo" class="logo">
+            <img src="https://www.arabou.edu.sa/assets/common/images/logo-footer-ar.png" 
+                 alt="AOU Logo" 
+                 class="logo">
         </div>
 
-        <!-- Main calculator container with glass effect -->
+        <!-- Main calculator interface -->
         <div class="calculator-container glass-effect">
-            <!-- Arabic title for GPA calculator -->
+            
+            <!-- Information button - opens help modal -->
+            <button class="info-icon" onclick="toggleInfoPanel()">
+                <i class="fas fa-info"></i>
+            </button>
+
+            <!-- Main heading in Arabic -->
             <h1>حساب المعدل التراكمي للجامعة العربية المفتوحة</h1>
 
             <!-- Previous GPA input section -->
             <div class="previous-gpa-section">
                 <div class="input-group">
-                    <!-- Previous GPA input field -->
+                    <!-- Previous GPA input -->
                     <div class="input-wrapper">
                         <label for="prev-gpa"></label>
                         <input type="number" 
@@ -41,7 +58,8 @@
                                max="4" 
                                placeholder="Enter previous GPA / المعدل السابق">
                     </div>
-                    <!-- Previous hours input field -->
+                    
+                    <!-- Previous credit hours input -->
                     <div class="input-wrapper">
                         <label for="prev-hours"></label>
                         <input type="number" 
@@ -52,56 +70,56 @@
                 </div>
             </div>
 
-            <!-- Container for dynamically added subjects -->
+            <!-- Dynamic subjects container - populated by JavaScript -->
             <div id="subjects-container" class="subjects-container">
-                <!-- Subjects will be added here dynamically via JavaScript -->
+                <!-- Subject entries will be dynamically added here -->
             </div>
 
-            <!-- Action buttons group -->
+            <!-- Action buttons -->
             <div class="button-group">
-                <!-- Add subject button -->
+                <!-- Add new subject button -->
                 <button class="btn btn-primary" onclick="addSubject()">
                     <i class="fas fa-plus"></i>
-                    Add Subject
+                    Add Subject / أضف مادة
                 </button>
+                
                 <!-- Calculate GPA button -->
                 <button class="btn btn-success" onclick="calculateGPA()">
                     <i class="fas fa-calculator"></i>
-                    Calculate
+                    Calculate / احسب
                 </button>
-                <!-- Clear all inputs button -->
+                
+                <!-- Clear all data button -->
                 <button class="btn btn-danger" onclick="clearAll()">
                     <i class="fas fa-trash"></i>
-                    Clear All
+                    Clear All / امسح الكل
                 </button>
             </div>
 
-            <!-- Results container (hidden by default) -->
+            <!-- Results display section - initially hidden -->
             <div id="result" class="result glass-effect hidden">
-                <!-- Results will be displayed here via JavaScript -->
+                <!-- Calculation results will be displayed here -->
             </div>
         </div>
 
-        <!-- Footer section -->
+        <!-- Footer with developer information and social links -->
         <footer class="footer glass-effect">
             <div class="footer-content">
-                <!-- Developer credit -->
+                <!-- Developer credit and version -->
                 <p class="footer-text">Developed by Mohammed Nuseirat 
-                    <br>• v2.0</p>
+                    <br>• v2.5</p>
+                
                 <!-- Social media links -->
                 <div class="social-links">
-                    <!-- GitHub profile link -->
                     <a href="https://github.com/nuseirat" target="_blank" class="social-link">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
-                    <!-- LinkedIn profile link -->
                     <a href="https://linkedin.com/in/mohammednuseirat" target="_blank" class="social-link">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <!-- Twitter/X profile link -->
                     <a href="https://x.com/mohanuseirat" target="_blank" class="social-link">
                         <i class="fa-brands fa-x-twitter fa-2x"></i>
-                    <!-- Website link -->
+                    </a>
                     <a href="https://nuseirat.github.io/" target="_blank" class="social-link">
                         <i class="fas fa-globe fa-2x"></i>
                     </a>
@@ -110,12 +128,32 @@
         </footer>
     </main>
 
-    <!-- JavaScript libraries and scripts -->
-    <!-- GSAP animation library -->
+    <!-- Information modal panel -->
+    <div id="info-panel" class="info-panel">
+        <div class="info-content">
+            <!-- Close button -->
+            <button class="close-btn" onclick="toggleInfoPanel()">
+                <i class="fas fa-times"></i>
+            </button>
+            <!-- Language Switcher -->
+            <div class="lang-switch">
+                <button id="lang-en" class="lang-btn active" onclick="setInfoLang('en')">English</button>
+                <button id="lang-ar" class="lang-btn" onclick="setInfoLang('ar')">العربية</button>
+            </div>
+            <!-- Dynamic content containers -->
+            <h2 class="info-title" id="info-title"></h2>
+            <div class="info-section" id="about-section"></div>
+            <div class="info-section" id="grading-section"></div>
+            <div class="info-section" id="faq-section"></div>
+            <div class="info-section" id="tips-section"></div>
+        </div>
+    </div>
+
+    <!-- External JavaScript libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Custom JavaScript file -->
-    <script src="script.js"></script>
-    <!-- Font Awesome kit -->
     <script src="https://kit.fontawesome.com/86e812f22e.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
