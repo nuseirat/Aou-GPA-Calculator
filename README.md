@@ -1,40 +1,39 @@
-# AOU GPA Calculator
-
-Visit the site here: [AOU GPA Calculator](https://aougpa.netlify.app/)
+# Update 3.0 - AOU GPA Calculator
 
 ## Overview
+In this release, the AOU GPA Calculator has been enhanced with new features to improve accessibility, clarity, and support for a wider audience.  
+The focus of this update is to provide users with helpful information directly within the app, bilingual support, and guidance through frequently asked questions.
 
-The AOU GPA Calculator is a web-based tool designed to assist students at the Arab Open University (AOU) in calculating their Grade Point Average (GPA) based on the university's grading system. This calculator provides a user-friendly interface for students to input their grades and study hours, offering a quick and accurate assessment of their academic performance.
+## New 
+![New Screenshot](https://github.com/user-attachments/assets/f8dc7bca-89e3-437c-960d-cd39382853fa)
+
+## Old
+![Old Screenshot](https://github.com/user-attachments/assets/3a695d15-9d73-4d18-b15b-aae9b42d4891)
+
+### New Features
+- **Information Box**  
+  Added a dedicated info box within the calculator that explains how the GPA calculation works and provides tips for students.
+
+- **Bilingual Support (English & Arabic)**  
+  Users can now switch between Arabic and English seamlessly, making the tool accessible to a broader audience at AOU.
+
+- **FAQ Section**  
+  Introduced a new "Frequently Asked Questions" section to answer common queries about GPA calculation, grading scales, and usage of the tool.
+
+### Improvements
+- Polished UI for better readability and usability across both languages.
+- Enhanced spacing and structure in the interface to support the new info and FAQ sections.
+- Maintained responsiveness for mobile and tablet devices.
+
+### Visual Updates
+- Info box styled with a clear highlight to catch user attention.
+- FAQ displayed in an accordion-style list for cleaner navigation.
+
+### Author
+This update was developed by **Mohammed Nuseirat**.  
+Connect with me on [LinkedIn](https://www.linkedin.com/in/mohammednuseirat/) and [X](https://x.com/MohaNuseirat).
 
 
-![لقطة شاشة 2024-10-24 040541](https://github.com/user-attachments/assets/1a5d73ac-6167-4503-a07f-ed8d0f0286f9)
-## Features
-
-- **Dynamic Subject Input**: 
-  Easily add subjects with individual grade and study hour inputs. Remove specific subjects to tailor your GPA calculation.
-
-- **Intuitive User Interface**: 
-  Clear and straightforward design for efficient use. Responsive layout for a seamless experience on various devices.
-
-- **AOU Grading System**: 
-  Follows the AOU grading system, providing accurate GPA calculations. Corresponding grades include A, B+, B, C+, C, D, and F.
-
-## How to Use
-
-1. **Add Subjects**: Click the "Add Subject" button to input your grades and study hours for each subject.
-  
-2. **Calculate GPA**: Use the "Calculate GPA" button to obtain your GPA based on the entered subjects.
-  
-3. **Remove Subjects**: Click the "Remove All" button to clear all subjects and start fresh.
-
-## Contributing
-
-Contributions are welcome! If you have ideas for improvements, bug fixes, or additional features, feel free to open an issue or submit a pull request.
-
-## Author
-
-This GPA Calculator was created by **Mohammed Nuseirat**. Connect with me on [LinkedIn](https://www.linkedin.com/in/mohammednuseirat/) and [X](https://x.com/MohaNuseirat).
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
